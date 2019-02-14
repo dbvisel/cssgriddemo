@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+    <meta charset="UTF-8">
+		<title>CSS Grid Demo</title>
+    <meta name="msapplication-tap-highlight" content="no">
+    <link rel="shortcut icon" href="/favicon.26242483.ico" type="image/x-icon">
+    <link rel="icon" href="/favicon.26242483.ico" type="image/x-icon">
+	<link rel="stylesheet" href="/js.00a46daa.css"></head>
+	<body>
+		<main>
+			<nav id="mainnav"><a href="#" id="goleft">«</a><div id="numbers"></div><a href="#" id="goright">»</a></nav>
+			<section>
+			<article id="panel_0">
+				<div class="text">
+					<h1>How do we put things on screens?<br>How could we do it in a less terrible way?</h1>
+					<p>When we look at a document on a screen, we're usually looking at them in a browser. This can mean a webpage on your computer. Or it can mean that same webpage on your phone. Or it could mean what’s shown in an app on your phone or your computer. Usually when we design for the screen, we're designing for a browser.
+				</p>
+				<p>
+					This presentation is about exactly how things get from your artboards to the browser, which might seem to be a very boring kind of magic: after you hand off a design &amp; it eventually comes back as a webpage, maybe in a slightly mangled state. What has happened?</p>
+				<p> 
+					Basically your design has been transformed into something called CSS, which is a set of instructions for the browser on how to display all the parts of the design. This isn’t the only way this could happen! Conisder an alternative: we could just export whatever’s in Sketch as a single enormous image and put that in the browser. But the downsides of that are pretty clear:</p>
+					<ul>
+						<li>We might want different parts of a page to change when the user does something.</li>
+						<li>We might want the page to work on both a tiny phone and an enormous monitor.</li>
+						<li>Image files are a lot bigger than just text, and a webpage made that way would be really slow.</li>
+					</ul>
+				<p></p><p>
+					So we don't usually do that.</p>
+					<p>Instead, we make a bunch of instructions in CSS, which say things like “make this piece of text red and have it appear in 24-point Futura”. There are a lot of places to learn about that if you're really interesteed. But what I want to talk about today is something called the block model, which is the core of how a layout becomes a web page. The block model has been changing pretty radically in the past few years, and that will allow us to design new kinds of layouts. And that’s why it might be important to know a little bit about it at a high level.</p>
+				</div>
+
+			</article>
+			<article id="panel_1">
+					<nav><div>
+						<h2>A sample document</h2>
+						<p>This document has 9 blocks in it. Note that all the blocks are as wide as the document is – if you resize the window, the paragraphs will reflow. The only thing that has a constant size is the image. The left margin of everything stays the same, but the distance from the top may change depending on the size of the screen. Sometimes the layout looks nice; sometimes it does not look nice.</p></div>
+					</nav>
+					<div class="demo">
+						<div class="demo_document">
+							<h1>This is the main header</h1>
+							<p>Here is my first paragraph of text. Look how it goes on and on and on. Here is my first paragraph of text. It goes on and on and on. Here is my first paragraph of text. It is still going on and on and on. Here is my first paragraph of text. </p>
+							<p>Here is the second paragraph of text. Look how short it is!</p>
+							<div class="demo_image"></div>
+							<p>Here is the third paragraph of text, after a break for that lovely image. The length of this paragraph: <strong>moderate</strong>. That bold word is called a <em>span</em>. (Those italic words are too.)</p>
+							<ul>
+								<li>• First list item</li>
+								<li>• Second list item. If this keeps going all the way to the right margin, it will wrap around like a regular paragraph.</li>
+								<li>• Third list item. These bullets don’t look right.</li>
+							</ul>
+						</div>
+					</div>
+					<div class="text">
+						<h1>The concept of the block model</h1>
+						<p>When browsers started, the web was very slow and therefore most of it was text. Text happens to be something that computers are good at dealing with: text is mostly linear, and computers are <em>very</em> linear. Text is mostly one-dimensional: a line from start to finish. To a computer a word is a sequence of letters; a sentence is a sequence of words; and a paragraph is a sequence of sentences. And so on and so on. It’s pretty easy to lay out text: by default the first thing appears at the top of the page, the next thing appears beneath that, and so on, and so on. </p>
+						<p>The basic model for how documents appear in a browser is made up of <strong>blocks</strong>, a word that seems to have been selected for its meaninglessness: basically, it's a container that might have text in it, or it might have something else, including other containers. A document is a block and inside of that are more blocks. A paragraph is a block. A header is a block. An image would be a block.</p>
+						<p>There are defaults built into browsers for how these should be displayed. If you give it a paragraph or text, it’s as wide as the width of the screen; if you give the browser an image, the height and width is the same as the size of the image itself. If you put an image between two paragraphs, the image will appear on the left, there will be empty space to its right, and the next paragraph will appear below it.</p>
+						<p>Something that’s a little more complicated is a list, which is a block with blocks in it. The list is a block. And inside of it, each bullet point is also a block. 
+						</p><p>
+						You can also have non-blocky things inside blocks: if a stretch of text is bold or italic, it will be displayed differently from the surrounding text. These are called spans and they behave a little differently, but we won’t worry about them right now.
+						</p><p>The browser lays out all the blocks that it’s given in a straight line from top to bottom. This is fine if you’re talking about something like a privacy policy which is just straight text. But for most other things, you want to have more control. So that’s where CSS comes in. CSS lets us specify where and how a block should be placed. </p>
+						<p>Let’s take a quick trip through the history of CSS in browers.</p>
+						</div>
+					
+			</article>
+			<article id="panel_2">
+					<nav><h2>A classic CSS layout</h2>
+						<p>This layout is 600 pixels wide; resizing your screen won't make it any bigger, and if you make the window narrower than 600 pixels, you won’t see the whole layout.</p>
+					</nav>
+					<div class="demo">
+						<h2>A two-column layout done this way:</h2>
+						<div class="demo_document">
+							<div class="header">Header! Header! Header!</div>
+							<div class="wrapper">
+								<div class="leftcolumn"><div class="imagefloat">Image</div>Main text area. Main text area. Main text area. Main text area. Main text area. Main text area. Main text area. Main text area. Main text area. Main text area. Main text area. Main text area. Main text area. Main text area. Main text area. Main text area. Main text area. Main text area. Main text area. Main text area.
+									
+								</div>
+								<div class="sidebar">Sidebar. Sidebar. Sidebar. Sidebar. Sidebar. Sidebar. Sidebar. Sidebar. Sidebar. </div>
+							</div>
+							<div class="footer">Footer! Footer! Footer!</div>
+						</div>
+					</div>
+					<div class="text">
+						<h1>The original block model</h1>
+						<p>The original block model in CSS was not wonderful, though it does give you a lot of options. You can give a block a width and a height. A block can be positioned in the regular document flow, relative to another block, relative to the document as a whole, or relative to the user’s window. Many different layouts can be made this way, though the code that’s required might get very complicated.</p>
+						<p>Designers wasted an immense amount of time trying to make layouts with sidebars and footers that didn’t break. Another problem was that different browsers handled things differently.</p>
+						<p>But you could, with a lot of work, make pixel-perfect layouts. The problem turned out to be the idea of pixel-perfect.</p>
+						</div> 
+
+			</article>
+			<article id="panel_3">
+					<nav><h2>Responsive two-column design</h2>
+						<p>Make the window narrower or wider to see how this design reshapes itself to fit the available space. It’s not perfect, but it does a better job of making sure that the content is always visible.</p>
+						<p>But note also how wildly different the layout can be! Imagine how weird it might look if the purple area were meant to be a image: designers end up using abstract images that can work at any size or crop.</p>
+					</nav>
+					<div class="demo">
+						<h2>A responsive version of the two-column design:</h2>
+						<div class="demo_document">
+							<div class="header">Header! Header! Header!</div>
+							<div class="wrapper">
+								<div class="leftcolumn"><div class="imagefloat">Image</div>Main text area. Main text area. Main text area. Main text area. Main text area. Main text area. Main text area. Main text area. Main text area. Main text area. Main text area. Main text area. Main text area. Main text area. Main text area. Main text area. Main text area. Main text area. Main text area. Main text area.
+									
+								</div>
+								<div class="sidebar">Sidebar. Sidebar. Sidebar. Sidebar. Sidebar. Sidebar. Sidebar. Sidebar. Sidebar. </div>
+							</div>
+							<div class="footer">Footer! Footer! Footer!</div>
+						</div>
+					</div>
+					<div class="text">
+						<h1>The idea of responsive design</h1>
+						<p>A big problem with the classic CSS model came to light when people started using phones and tablets to look at the web: suddenly, everyone was looking at the same page in radically differently sized screens. Something that works on a 1024px screen might not work at all on a 320px iPhone screen. So the answer to this was to make the CSS more complicated by adding rules for different sizes. A page might be displayed one way if you’re on a desktop and another way if you’re on a phone.</p>
+						<p>This meant more work for designers. The idea of design changed: instead of making a perfect layout for the perfect screen, it became making something that worked for all screens, at least a little.</p>
+						</div>
+
+			</article>
+			<article id="panel_4">
+					<nav>This article's navigation!</nav>
+					<div class="demo">This article's demo area!</div>
+					<div class="text">
+						<h1>Flexbox &amp; constraint-based design</h1>
+						</div>
+
+			</article>
+			<article id="panel_5">
+					<nav>This article's navigation!</nav>
+					<div class="demo">This article's demo area!</div>
+					<div class="text">
+						<h1>CSS Grid</h1>
+						</div>
+
+			</article>
+		</section>
+		</main>
+    <script src="/js.00a46daa.js"></script>
+	</body>
+</html>

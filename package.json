@@ -1,0 +1,25 @@
+{
+	"name": "cssgriddemo",
+	"version": "1.0.0",
+	"description": "CSS Grid Demo",
+	"main": "js/index.js",
+	"scripts": {
+		"autoprefixer": "postcss -u autoprefixer --autoprefixer.browsers '&gt; 5%, ie 9' -r dist/*.css",
+		"deploy": "parcel build index.html && netlify deploy --prod --dir=dist",
+		"start": "parcel index.html",
+		"build": "parcel build index.html"
+	},
+	"author": "Dan Visel (dbvisel@gmail.com)",
+	"license": "ISC",
+	"devDependencies": {
+		"autoprefixer": "^9.4.2",
+		"babel-core": "^6.26.3",
+		"babel-preset-env": "^1.7.0",
+		"node-sass": "^4.11.0",
+		"parcel-bundler": "^1.11.0",
+		"postcss-cli": "^6.0.1"
+	},
+	"dependencies": {
+		"scss": "^0.2.4"
+	}
+}
