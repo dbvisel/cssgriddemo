@@ -8,11 +8,16 @@ $color3: #f9c488;
 $color4: #f5f988;
 $color5: #bdf988;
 
+$backdropcolor: #999;
+$backgroundcolor: #d9d9d9;
+
 $navwidth: 240px;
 $fontfamily: 'Fira Sans', 'Helvetica Neue', 'Helvetica', 'Futura', sans-serif;
 
-$breakpoints: (  'big': 1360px );
-
+$breakpoints: (
+	'desktop': 1024px,
+	'big': 1360px
+);
 
 html,
 body {
@@ -20,7 +25,7 @@ body {
 	padding: 0;
 	width: 100%;
 	height: 100%;
-	background-color: #999;
+	background-color: $backdropcolor;
 	box-sizing: border-box;
 	font-size: 16px;
 	font-family: $fontfamily;
@@ -33,6 +38,21 @@ body {
 p,
 li {
 	line-height: 1.5;
+	& a {
+		color: firebrick;
+		font-weight: bold;
+		text-decoration: none;
+		&:hover {
+			text-decoration: underline;
+		}
+	}
+	& .embiggen {
+		font-size: 200%;
+		position: relative;
+		top: 10px;
+		padding-top: 0;
+		line-height: 50%;
+	}
 }
 
 main {
@@ -40,7 +60,7 @@ main {
 	grid-template-rows: 32px 1fr;
 	grid-template-columns: $navwidth 1fr;
 	border-radius: 8px;
-	background-color: #d9d9d9;
+	background-color: $backgroundcolor;
 	padding: 16px;
 	box-sizing: border-box;
 	width: 100%;
@@ -100,6 +120,7 @@ section {
 }
 
 article {
+	opacity: 0;
 	display: grid;
 	box-sizing: border-box;
 	grid-template-columns: minmax(320px, 640px) 1fr;
@@ -109,17 +130,59 @@ article {
 	min-width: calc(100vw - 48px);
 	max-width: calc(100vw - 48px);
 	max-height: 100%;
+	transition: opacity ease-in 1s;
+	@include media('<=desktop') {
+		max-height: unset;
+		grid-template-columns: 1fr;
+		grid-template-rows: 2fr 2fr 1fr;
+		overflow-y: auto;
+	}
 	& .text {
+		position: relative;
 		grid-row: 1/3;
 		grid-column: 1/3;
 		overflow-y: auto;
 		font-size: 24px;
+		// // problem with this is that it overlays the headers
+		// &:before {
+		// 	position: sticky;
+		// 	top: 0;
+		// 	left: 0;
+		// 	height: 50px;
+		// 	width: 100%;
+		// 	content: '';
+		// 	background: linear-gradient(to top, transparent, $backgroundcolor);
+		// 	display: block;
+		// 	z-index: 2;
+		// 	margin-top: -50px;
+		// }
+		@include media('<=desktop') {
+			grid-row: 1/4;
+			grid-column: 1/1;
+			height: 100%;
+			overflow-y: auto;
+		}
+		&:after {
+			position: sticky;
+			bottom: 0;
+			left: 0;
+			height: 100px;
+			width: 100%;
+			content: '';
+			background: linear-gradient(to bottom, transparent, $backgroundcolor);
+			display: block;
+		}
 		& h1 {
 			font-size: 48px;
 			text-align: center;
 			max-width: 960px;
 			margin-left: auto;
 			margin-right: auto;
+		}
+		& h2 {
+			font-size: 24px;
+			margin-top: 24px;
+			margin-bottom: 12px;
 		}
 		& p,
 		& ul {
@@ -137,22 +200,66 @@ article {
 		grid-row: 1/2;
 		grid-column: 2/3;
 		background-color: white;
-		padding: 16px;
 		border: 8px solid black;
-		overflow-y: auto;
+		overflow: hidden;
+		position: relative;
+		@include media('<=desktop') {
+			grid-row: 2/3;
+			grid-column: 1/2;
+			height: 100%;
+			overflow-y: auto;
+			min-height: 600px;
+		}
+		& .demoresize {
+			//	border: 16px dashed white;
+			position: absolute;
+			overflow: auto;
+			//	min-width: 100%;
+			top: 0;
+			left: 0;
+			padding: 16px;
+			height: 100%;
+			width: 100%;
+			box-sizing: border-box;
+			& .resizearrow {
+				right: 0;
+				bottom: 0;
+				position: absolute;
+				font-size: 64px;
+				cursor: se-resize;
+				background-color: $color4;
+				color: black;
+				background-color: transparent;
+				color: $color4;
+				@include notouch;
+				border-radius: 100%;
+				width: 64px;
+				text-align: center;
+				padding: 0 8px;
+				border: 8px solid $color4;
+				text-shadow: black 0 0 20px;
+				box-shadow: black 0 0 20px;
+			}
+		}
 		& h2 {
 			text-align: right;
 			color: white;
+			@include notouch;
 		}
 		& + .text {
 			grid-column: 1/2;
+			@include media('<=desktop') {
+				grid-column: 1/2;
+				grid-row: 1/2;
+			}
 			& h1 {
 				margin-top: 0;
 				font-size: 36px;
 				text-align: left;
 				max-width: 640px;
 			}
-			& p, & ul {
+			& p,
+			& ul {
 				max-width: 640px;
 				font-size: 100%;
 			}
@@ -163,6 +270,13 @@ article {
 		grid-column: 2/3;
 		padding: 16px;
 		overflow-y: auto;
+		@include media('<=desktop') {
+			grid-column: 1/2;
+			grid-row: 3/4;
+			height: 100%;
+			overflow-y: auto;
+			margin-top: 16px;
+		}
 		& h2 {
 			margin-top: 0;
 		}
@@ -195,6 +309,10 @@ article {
 	}
 	& .demo {
 		border-color: $color2;
+		& .resizearrow {
+			color: $color2;
+			border-color: $color2;
+		}
 	}
 }
 
@@ -204,6 +322,10 @@ article {
 	}
 	& .demo {
 		border-color: $color3;
+		& .resizearrow {
+			color: $color3;
+			border-color: $color3;
+		}
 	}
 }
 
@@ -213,6 +335,10 @@ article {
 	}
 	& .demo {
 		border-color: $color4;
+		& .resizearrow {
+			color: $color4;
+			border-color: $color4;
+		}
 	}
 }
 
@@ -222,192 +348,24 @@ article {
 	}
 	& .demo {
 		border-color: $color5;
+		& .resizearrow {
+			color: $color5;
+			border-color: $color5;
+		}
 	}
 }
 
-article .demo {
-	background-color: #333;
-	& .demo_document {
-		border: 4px $color1 solid;
-		padding: 8px;
-		margin-left: 150px;
-		position: relative;
-		box-sizing: border-box;
-		background-color: white;
-		& h1 {
-			box-sizing: border-box;
-			background: $color2;
-			padding: 8px;
-			border: 4px dotted black;
-			position: relative;
-			&:before {
-				content: 'header';
-				color: $color2;
-				width: 140px;
-				text-align: right;
-				font-size: 16px;
-				position: absolute;
-				left: -164px;
-				font-weight: bold;
-				text-transform: uppercase;
-				letter-spacing: 2px;
-			}
-		}
-		& p {
-			box-sizing: border-box;
-			background: $color0;
-			padding: 8px;
-			border: 2px dotted black;
-			& strong,
-			& em {
-				border: 2px dotted black;
-				padding: 2px 4px;
-				background-color: rgba(white, 0.25);
-			}
-			&:before {
-				color: $color0;
-				font-size: 16px;
-				content: 'paragraph';
-				width: 140px;
-				text-align: right;
-				position: absolute;
-				left: -154px;
-				font-weight: bold;
-				text-transform: uppercase;
-				letter-spacing: 2px;
-			}
-		}
-		& .demo_image {
-			box-sizing: border-box;
-			background: $color3;
-			width: 200px;
-			height: 200px;
-			border: 4px dotted black;
-			&:before {
-				color: $color3;
-				font-size: 16px;
-				content: 'image';
-				width: 140px;
-				text-align: right;
-				position: absolute;
-				left: -154px;
-				font-weight: bold;
-				text-transform: uppercase;
-				letter-spacing: 2px;
-			}
-		}
-		& ul {
-			background-color: $color4;
-			padding: 16px 8px;
-			border: 4px dotted black;
-			&:before {
-				color: $color4;
-				font-size: 16px;
-				content: 'bulleted list';
-				position: absolute;
-				left: -154px;
-				width: 140px;
-				text-align: right;
-				margin-top: -20px;
-				font-weight: bold;
-				text-transform: uppercase;
-				letter-spacing: 2px;
-			}
-		}
-		& li {
-			background-color: $color5;
-			padding: 8px;
-			border: 2px dotted black;
-			list-style: none;
-			&:before {
-				color: $color5;
-				font-size: 16px;
-				content: 'list item';
-				width: 140px;
-				text-align: right;
-				position: absolute;
-				left: -154px;
-				font-weight: bold;
-				text-transform: uppercase;
-				letter-spacing: 2px;
-			}
-		}
-
-	}
-}
-
-#panel_2 .demo_document, #panel_3 .demo_document {
-	width: 600px;
-	float: right;
-	& .header {
-		border: 4px dotted black;
+#panel_6 {
+	& nav {
 		background-color: $color0;
-		padding: 4px;
 	}
-	& .wrapper {
-		box-sizing: border-box;
-		border: 4px dotted black;
-		background-color: $color1;
-		padding: 4px;
-		margin: 4px 0;
-		overflow: auto;
-
-		& .leftcolumn {
-			box-sizing: border-box;
-			border: 4px dotted black;
-			background-color: $color3;
-			padding: 4px;
-			margin-right: 4px;
-			width: 400px;
-			float: left;
-			& .imagefloat {
-				width: 100px;
-				height: 100px;
-				float: right;
-				background-color: $color5;
-				border: 4px dotted black;
-				margin: 0 0 4px 4px;
-			}
-		}
-		& .sidebar {
-			box-sizing: border-box;
-			border: 4px dotted black;
-			background-color: $color4;
-			padding: 4px;
-			margin-right: 4px;
-			width: 100px;
-			float: right;
-		}
-	}
-	& .footer {
-		border: 4px dotted black;
-		background-color: $color2;
-		padding: 4px;
-		clear: both;
-
-	}
-
-}
-
-#panel_3 .demo_document {
-		width: 100%;
-	& .wrapper { 
-		& .leftcolumn {
-			@include media('<=big') {
-				width: 100%;
-				margin: 4px 0;
-			}
-			& .imagefloat {
-				@include media('<=big') {
-					float: unset;
-				}
-			}
-		}
-		& .sidebar {
-			@include media('<=big') {
-				width: 100%;
-				margin: 4px 0;
-			}
+	& .demo {
+		border-color: $color0;
+		& .resizearrow {
+			color: $color0;
+			border-color: $color0;
 		}
 	}
 }
+
+@import 'demos';

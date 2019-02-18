@@ -203,17 +203,47 @@ require("../scss/styles.scss");
   };
 
   throttle('resize', 'optimizedResize');
-})();
+})(); // test for localstorage
+
+
+function storageAvailable(type) {
+  try {
+    var storage = window[type],
+        x = '__storage_test__';
+    storage.setItem(x, x);
+    storage.removeItem(x);
+    return true;
+  } catch (e) {
+    return e instanceof DOMException && ( // everything except Firefox
+    e.code === 22 || // Firefox
+    e.code === 1014 || // test name field too, because code might not be present
+    // everything except Firefox
+    e.name === 'QuotaExceededError' || // Firefox
+    e.name === 'NS_ERROR_DOM_QUOTA_REACHED') && // acknowledge QuotaExceededError only if there's something already stored
+    storage.length !== 0;
+  }
+}
 
 var data = {
   currentPanel: 0,
-  panels: 0
+  panels: 0,
+  localStorage: false,
+  isNarrow: false,
+  isSuperNarrow: false
 };
 var navigation = {
   setup: function setup() {
     var panels = document.querySelectorAll('article');
     data.panels = panels.length;
     var numbers = document.querySelector('#mainnav #numbers');
+
+    if (storageAvailable('localStorage')) {
+      data.localStorage = true;
+
+      if (localStorage.getItem('currentPage')) {
+        data.currentPanel = parseInt(localStorage.getItem('currentPage'), 10);
+      }
+    }
 
     while (numbers.firstChild) {
       numbers.removeChild(numbers.firstChild);
@@ -263,6 +293,8 @@ var navigation = {
     var section = document.querySelector('main section');
     var myWidth = section.clientWidth;
     section.scrollLeft = myWidth * wantedPanel;
+    section.querySelector("article#panel_".concat(data.currentPanel)).style.opacity = 0;
+    section.querySelector("article#panel_".concat(wantedPanel)).style.opacity = 1;
     data.currentPanel = wantedPanel;
     var numbersLinks = document.querySelectorAll('#numbers a');
     document.querySelector('#goleft').classList = wantedPanel === 0 ? 'off' : '';
@@ -275,9 +307,65 @@ var navigation = {
         numbersLinks[i].classList = 'on';
       }
     }
+
+    if (document.querySelector("article#panel_".concat(wantedPanel, " .demoresize"))) {
+      // first, delete all existing resizearrow elements
+      var resizeArrows = document.getElementsByClassName('resizearrow');
+
+      while (resizeArrows[0]) {
+        resizeArrows[0].parentNode.removeChild(resizeArrows[0]);
+      }
+
+      navigation.setupDemoResize(document.querySelector("article#panel_".concat(wantedPanel, " .demoresize")));
+    }
+
+    if (data.localStorage) {
+      localStorage.setItem('currentPage', wantedPanel);
+    }
+  },
+  setupDemoResize: function setupDemoResize(element) {
+    // mostly from here: https://stackoverflow.com/questions/8960193/how-to-make-html-element-resizable-using-pure-javascript
+    var resizer = document.createElement('div');
+    resizer.innerHTML = '⇲';
+    resizer.classList = 'resizearrow';
+    element.appendChild(resizer);
+    resizer.addEventListener('mousedown', initResize, false);
+
+    function initResize(e) {
+      window.addEventListener('mousemove', startResize, false);
+      window.addEventListener('mouseup', stopResize, false);
+    }
+
+    function startResize(e) {
+      element.style.width = e.clientX - element.getBoundingClientRect().x + 'px';
+      element.style.height = e.clientY - element.offsetTop + 'px';
+    }
+
+    function stopResize(e) {
+      window.removeEventListener('mousemove', startResize, false);
+      window.removeEventListener('mouseup', stopResize, false);
+      element.style.width = '100%';
+      element.style.height = '100%';
+    }
   }
 };
 navigation.setup();
+
+document.querySelector('a#narrow').onclick = function () {
+  data.isSuperNarrow = false;
+  document.querySelector('a#supernarrow').innerHTML = 'show supernarrow version';
+  document.querySelector('#panel_6 #example1').classList = data.isNarrow ? 'demo_document' : 'demo_document narrow';
+  document.querySelector('a#narrow').innerHTML = data.isNarrow ? 'Show narrow version' : 'Show wide version';
+  data.isNarrow = !data.isNarrow;
+};
+
+document.querySelector('a#supernarrow').onclick = function () {
+  data.isNarrow = false;
+  document.querySelector('a#narrow').innerHTML = 'Show narrow version';
+  document.querySelector('#panel_6 #example1').classList = data.isSuperNarrow ? 'demo_document' : 'demo_document supernarrow';
+  document.querySelector('a#supernarrow').innerHTML = data.isSuperNarrow ? 'show supernarrow version' : 'show wide version';
+  data.isSuperNarrow = !data.isSuperNarrow;
+};
 },{"../scss/styles.scss":"scss/styles.scss"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -305,7 +393,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59578" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61344" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
