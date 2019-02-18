@@ -53,6 +53,14 @@ li {
 		padding-top: 0;
 		line-height: 50%;
 	}
+	& .circle {
+		display: inline-block;
+		color: $color3;
+		background-color: black;
+		min-width: 28px;
+		text-align: center;
+		border-radius: 100%;
+	}
 }
 
 main {

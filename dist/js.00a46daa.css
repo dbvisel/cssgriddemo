@@ -54,6 +54,14 @@ li {
     top: 10px;
     padding-top: 0;
     line-height: 50%; }
+  p .circle,
+  li .circle {
+    display: inline-block;
+    color: #f9c488;
+    background-color: black;
+    min-width: 28px;
+    text-align: center;
+    border-radius: 100%; }
 
 main {
   display: grid;
