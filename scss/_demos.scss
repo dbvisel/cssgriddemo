@@ -93,6 +93,11 @@ article .demo {
 			padding: 8px;
 			border: 2px dotted black;
 			list-style: none;
+			& span {
+				float: left;
+				margin-right: 1em;
+				margin-bottom: 1em;
+			}
 			&:before {
 				color: $color5;
 				font-size: 16px;
@@ -115,11 +120,19 @@ article .demo {
 			margin-right: 8px;
 			margin-bottom: 8px;
 			flex: 2;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			text-align: center;
 			&:nth-child(even) {
 				background-color: $color2;
 			}
 		}
 	}
+}
+
+#panel_1 .demo {
+	padding: 16px;
 }
 
 #panel_2 .demo_document,
@@ -132,6 +145,7 @@ article .demo {
 		border: 4px dotted black;
 		background-color: $color0;
 		padding: 4px;
+		text-align: center;
 	}
 	& .wrapper {
 		box-sizing: border-box;
@@ -157,6 +171,9 @@ article .demo {
 			background-color: $color5;
 			border: 4px dotted white;
 			margin: 0 0 4px 4px;
+			display: flex;
+			justify-content: center;
+			align-items: center;
 		}
 	}
 	& .sidebar {
@@ -173,6 +190,7 @@ article .demo {
 		background-color: $color2;
 		padding: 4px;
 		clear: both;
+		text-align: center;
 	}
 }
 
@@ -361,12 +379,20 @@ article .demo {
 		}
 		& .header {
 			grid-column: 1/4;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			text-align: center;
 		}
 		& .leftcolumn {
 			grid-column: 3/4;
 			grid-row: 2/5;
 			width: 100%;
 			min-height: 200px;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			text-align: center;
 			@include media('<=big') {
 				grid-column: 1/4;
 				grid-row: 2/3;
@@ -381,6 +407,10 @@ article .demo {
 			border: 4px dotted black;
 			padding: 4px;
 			min-height: 100px;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			text-align: center;
 			@include media('<=big') {
 				grid-row: 3/4;
 				grid-column: unset;
@@ -424,6 +454,10 @@ article .demo {
 			}
 		}
 		& .footer {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			text-align: center;
 			grid-column: 3/4;
 			grid-row: 5/6;
 			@include media('<=big') {

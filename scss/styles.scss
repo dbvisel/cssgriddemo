@@ -14,10 +14,7 @@ $backgroundcolor: #d9d9d9;
 $navwidth: 240px;
 $fontfamily: 'Fira Sans', 'Helvetica Neue', 'Helvetica', 'Futura', sans-serif;
 
-$breakpoints: (
-	'desktop': 1024px,
-	'big': 1360px
-);
+$breakpoints: ('desktop': 1024px, 'big': 1360px);
 
 html,
 body {
@@ -265,6 +262,11 @@ article {
 				font-size: 36px;
 				text-align: left;
 				max-width: 640px;
+			}
+			& h2 {
+				max-width: 640px;
+				margin-left: auto;
+				margin-right: auto;
 			}
 			& p,
 			& ul {

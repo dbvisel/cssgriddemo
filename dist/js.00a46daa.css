@@ -246,10 +246,20 @@ article {
         font-size: 36px;
         text-align: left;
         max-width: 640px; }
+      article .demo + .text h2 {
+        max-width: 640px;
+        margin-left: auto;
+        margin-right: auto; }
       article .demo + .text p,
       article .demo + .text ul {
         max-width: 640px;
         font-size: 100%; }
+        article .demo + .text p li span,
+        article .demo + .text ul li span {
+          float: left;
+          margin-right: 1em;
+          margin-bottom: 1em;
+          position: relative; }
   article nav {
     grid-row: 2/3;
     grid-column: 2/3;
@@ -407,6 +417,10 @@ article .demo {
       padding: 8px;
       border: 2px dotted black;
       list-style: none; }
+      article .demo .demo_document li span {
+        float: left;
+        margin-right: 1em;
+        margin-bottom: 1em; }
       article .demo .demo_document li:before {
         color: #bdf988;
         font-size: 16px;
@@ -426,9 +440,16 @@ article .demo {
       max-width: 150px;
       margin-right: 8px;
       margin-bottom: 8px;
-      flex: 2; }
+      flex: 2;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center; }
       article .demo .demo_document .card:nth-child(even) {
         background-color: #f988bd; }
+
+#panel_1 .demo {
+  padding: 16px; }
 
 #panel_2 .demo_document,
 #panel_3 .demo_document,
@@ -442,7 +463,8 @@ article .demo {
   #panel_6 .demo_document .header {
     border: 4px dotted black;
     background-color: #88bdf9;
-    padding: 4px; }
+    padding: 4px;
+    text-align: center; }
   #panel_2 .demo_document .wrapper,
   #panel_3 .demo_document .wrapper,
   #panel_4 .demo_document .wrapper,
@@ -473,7 +495,10 @@ article .demo {
       float: right;
       background-color: #bdf988;
       border: 4px dotted white;
-      margin: 0 0 4px 4px; }
+      margin: 0 0 4px 4px;
+      display: flex;
+      justify-content: center;
+      align-items: center; }
   #panel_2 .demo_document .sidebar,
   #panel_3 .demo_document .sidebar,
   #panel_4 .demo_document .sidebar,
@@ -492,7 +517,8 @@ article .demo {
     border: 4px dotted black;
     background-color: #f988bd;
     padding: 4px;
-    clear: both; }
+    clear: both;
+    text-align: center; }
 
 #panel_3 .demo_document {
   width: 100%; }
@@ -632,12 +658,20 @@ article .demo {
         #panel_6 .demo_document#example1.superwide .imagecaption#caption1, #panel_6 .demo_document#example1.superwide .imagecaption#caption2, #panel_6 .demo_document#example1.superwide .imagecaption#caption3 {
           grid-row: unset; }
     #panel_6 .demo_document#example1 .header {
-      grid-column: 1/4; }
+      grid-column: 1/4;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center; }
     #panel_6 .demo_document#example1 .leftcolumn {
       grid-column: 3/4;
       grid-row: 2/5;
       width: 100%;
-      min-height: 200px; }
+      min-height: 200px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center; }
       @media (max-width: 1360px) {
         #panel_6 .demo_document#example1 .leftcolumn {
           grid-column: 1/4;
@@ -650,7 +684,11 @@ article .demo {
       background-color: #bdf988;
       border: 4px dotted black;
       padding: 4px;
-      min-height: 100px; }
+      min-height: 100px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center; }
       @media (max-width: 1360px) {
         #panel_6 .demo_document#example1 .image {
           grid-row: 3/4;
@@ -686,6 +724,10 @@ article .demo {
           #panel_6 .demo_document#example1 .imagecaption#caption1, #panel_6 .demo_document#example1 .imagecaption#caption2, #panel_6 .demo_document#example1 .imagecaption#caption3 {
             grid-row: unset; } }
     #panel_6 .demo_document#example1 .footer {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
       grid-column: 3/4;
       grid-row: 5/6; }
       @media (max-width: 1360px) {

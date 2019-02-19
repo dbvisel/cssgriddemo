@@ -14,7 +14,7 @@
 			<article id="panel_0">
 				<div class="text">
 					<h1>How do we put things on screens?<br />How could we do it in a less terrible way?</h1>
-					<p>When we look at a document on a screen, we're usually looking at them in a browser. This can mean a webpage on your computer. Or it can mean that same webpage on your phone. Or it could mean what’s shown in an app on your phone or your computer. Usually when we design for the screen, we're designing for a browser.
+					<p>When we look at a document on a screen, we’re usually looking at them in a browser. This can mean a webpage on your computer. Or it can mean that same webpage on your phone. Or it could mean what’s shown in an app on your phone or your computer. Usually when we design for the screen, we’re designing for a browser.
 				</p>
 				<p>
 					This presentation is about exactly how things get from your artboards to the browser, which might seem to be a very boring kind of magic: after you hand off a design &amp; it eventually comes back as a webpage, maybe in a slightly mangled state. What has happened?</p>
@@ -26,8 +26,8 @@
 						<li>Image files are a lot bigger than just text, and a webpage made that way would be really slow.</li>
 					</ul>
 				</p><p>
-					So we don't usually do that.</p>
-					<p>Instead, we make a bunch of instructions in CSS, which say things like “make this piece of text red and have it appear in 24-point Futura”. There are a lot of places to learn about that if you're really interesteed. But what I want to talk about today is something called the block model, which is the core of how a layout becomes a web page. The block model has been changing pretty radically in the past few years, and that will allow us to design new kinds of layouts. And that’s why it might be important to know a little bit about it at a high level.</p>
+					So we don’t usually do that.</p>
+					<p>Instead, we make a bunch of instructions in CSS, which say things like “make this piece of text red and have it appear in 24-point Futura”. There are a lot of places to learn about that if you’re really interesteed. But what I want to talk about today is something called the block model, which is the core of how a layout becomes a web page. The block model has been changing pretty radically in the past few years, and that will allow us to design new kinds of layouts. And that’s why it might be important to know a little bit about it at a high level.</p>
 				</div>
 
 			</article>
@@ -42,18 +42,18 @@
 							<p>Here is my first paragraph of text. Look how it goes on and on and on. Here is my first paragraph of text. It goes on and on and on. Here is my first paragraph of text. It is still going on and on and on. Here is my first paragraph of text. </p>
 							<p>Here is the second paragraph of text. Look how short it is!</p>
 							<div class="demo_image"></div>
-							<p>Here is the third paragraph of text, after a break for that lovely image. The length of this paragraph: <strong>moderate</strong>. That bold word is called a <em>span</em>. (Those italic words are too.)</p>
+							<p>Here is the third paragraph of text, after a break for that lovely image. The length of this paragraph: <strong>moderate</strong>. That bold word is called a <em>span</em>. (That italic word is too.)</p>
 							<ul>
-								<li>• First list item</li>
-								<li>• Second list item. If this keeps going all the way to the right margin, it will wrap around like a regular paragraph.</li>
-								<li>• Third list item. These bullets don’t look right.</li>
+								<li><span>•</span>First list item</li>
+								<li><span>•</span>Second list item. If this keeps going all the way to the right margin, it will wrap around like a regular paragraph.</li>
+								<li><span>•</span>Third list item. Short, but still full-width.</li>
 							</ul>
 						</div>
 					</div>
 					<div class="text">
 						<h1>The concept of the block model</h1>
 						<p>When browsers started, the web was very slow and therefore most of it was text. Text happens to be something that computers are good at dealing with: text is mostly linear, and computers are <em>very</em> linear. Text is mostly one-dimensional: a line from start to finish. To a computer a word is a sequence of letters; a sentence is a sequence of words; and a paragraph is a sequence of sentences. And so on and so on. It’s pretty easy to lay out text: by default the first thing appears at the top of the page, the next thing appears beneath that, and so on, and so on. </p>
-						<p>The basic model for how documents appear in a browser is made up of <strong>blocks</strong>, a word that seems to have been selected for its meaninglessness: basically, it's a container that might have text in it, or it might have something else, including other containers. A document is a block and inside of that are more blocks. A paragraph is a block. A header is a block. An image would be a block.</p>
+						<p>The basic model for how documents appear in a browser is made up of <strong>blocks</strong>, a word that seems to have been selected for its meaninglessness: basically, it’s a container that might have text in it, or it might have something else, including other containers. A document is a block and inside of that are more blocks. A paragraph is a block. A header is a block. An image would be a block.</p>
 						<p>There are defaults built into browsers for how these should be displayed. If you give it a paragraph or text, it’s as wide as the width of the screen; if you give the browser an image, the height and width is the same as the size of the image itself. If you put an image between two paragraphs, the image will appear on the left, there will be empty space to its right, and the next paragraph will appear below it.</p>
 						<p>Something that’s a little more complicated is a list, which is a block with blocks in it. The list is a block. And inside of it, each bullet point is also a block. 
 						</p><p>
@@ -65,7 +65,7 @@
 			</article>
 			<article id="panel_2">
 					<nav><h2>A classic CSS layout</h2>
-						<p>This layout is 600 pixels wide; resizing your screen won't make it any bigger, and if you make the window narrower than 600 pixels, you won’t see the whole layout.</p>
+						<p>This layout is 600 pixels wide; resizing your screen won’t make it any bigger, and if you make the window narrower than 600 pixels, you won’t see the whole layout.</p>
 					</nav>
 					<div class="demo">
 						<div class="demoresize">
@@ -92,7 +92,7 @@
 			</article>
 			<article id="panel_3">
 					<nav><h2>Responsive two-column design</h2>
-						<p>Make the window narrower or wider to see how this design reshapes itself to fit the available space. (Or drag the <span class="circle">⇲</span> icon.) It’s not perfect – the image doesn't change size for very small screens – but it does a better job of making sure that the content is always visible.</p>
+						<p>Make the window narrower or wider to see how this design reshapes itself to fit the available space. (Or drag the <span class="circle">⇲</span> handle.) It’s not perfect – the image doesn’t change size for very small screens – but it does a better job of making sure that the content is always visible.</p>
 						<p>But note also how wildly different the layout can be! Imagine how weird it might look if the purple area were meant to be a image: designers end up using abstract images that can work at any size or crop.</p>
 					</nav>
 					<div class="demo">
@@ -119,9 +119,9 @@
 			<article id="panel_4">
 					<nav>
 						<h2>A flexbox layout</h2>
-						<p>As you resize the window, in the top design the main column changes size, while the sidebar stays fixed. In the bottom design, they both grow.</p>
+						<p>As you resize the window, in the top design the main column changes size, while the sidebar has a fixed width. In the bottom design, they both grow.</p>
 						<h2>A card-based layout</h2>
-						<p>There are constraints on the card width, but the number of cards in a row changes as the screen width gets bigger or smaller.</p>
+						<p>There are constraints on the card width, but the number of cards in a row changes as the screen width gets bigger or smaller. Note that the rows are all the same height, but the columns vary in width: we could have set it so that the cards are always the same width (and the columns line up), but then they wouldn’t take up the full width of the containing area.</p>
 					</nav>
 					<div class="demo">
 						<div class="demoresize">
@@ -176,6 +176,7 @@
 					<nav>
 						<p>Note that when you resize the window, the space between the cards stays constant, while the cards expand to fill up the available space. We could also set it so that the cards each had fixed sizes and the space between varied.</p>
 						<p>The instructions here just let the cards fill the grid as they fit in. We could also assign specific cards to specific points in the grid.</p>
+						<p>In the second grid, when you mouseover some of the cards the cards are resized. The rest of the grid realigns itself as best it can.</p>
 					</nav>
 					<div class="demo">						
 						<div class="demoresize">
@@ -221,7 +222,7 @@
 			</article>
 			<article id="panel_6">
 				<nav>
-					<p><span class="embiggen">☞</span> <a href="#" id="narrow">Show narrow version</a>; <a href="#" id="supernarrow">show supernarrow version</a>; <a href="#" id="superwide">show superwide version</a></p>
+					<p><span class="embiggen">☞</span> Show: <a href="#" id="narrow">narrow version</a>/<a href="#" id="supernarrow">supernarrow version</a>/<a href="#" id="superwide">superwide version</a></p>
 					<p>Click the links to show different placements of all the blocks. What’s changing is the grid and where things go on the grid.</p>
 				</nav>
 				<div class="demo">
@@ -242,7 +243,8 @@
 					<p>
 						One thing that’s new in CSS Grid is the ability to explicitly place things at a position on a grid. While this could be faked before, it was considerably more complicated to make things stay where they should be.
 					</p>
-					<p>What this lets us do is to say how things should be in different layouts. We can use radically different layouts for different screen sizes. What's different now is that mostly we’re only making changes to the underlying grid, not to the components themselves.</p>
+					<p>What this lets us do is to say how things should be in different layouts. We can use radically different layouts for different screen sizes. What’s different now is that mostly we’re only making changes to the underlying grid, not to the components themselves.</p>
+					<p>What this means is that we should start thinking about grids underlying design, and about how designs can fit together in different ways. There’s suddenly a lot of possibility!</p>
 					<h2>For more information . . .</h2>
 					<p>Jen Simmons’s <a href="https://labs.jensimmons.com" target="__blank">Layout Lab</a> has a lot of good examples of what can be done with CSS Grid.</p>
 				</div>
