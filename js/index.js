@@ -54,7 +54,8 @@ let data = {
 	panels: 0,
 	localStorage: false,
 	isNarrow: false,
-	isSuperNarrow: false
+	isSuperNarrow: false,
+	isSuperWide: false
 };
 
 const navigation = {
@@ -164,20 +165,39 @@ navigation.setup();
 
 document.querySelector('a#narrow').onclick = function() {
 	data.isSuperNarrow = false;
+	data.isSuperWide = false;
 	document.querySelector('a#supernarrow').innerHTML = 'show supernarrow version';
+	document.querySelector('a#superwide').innerHTML = 'show superwide version';
 	document.querySelector('#panel_6 #example1').classList = data.isNarrow ? 'demo_document' : 'demo_document narrow';
-	document.querySelector('a#narrow').innerHTML = data.isNarrow ? 'Show narrow version' : 'Show wide version';
+	document.querySelector('a#narrow').innerHTML = data.isNarrow ? 'Show narrow version' : 'Show normal version';
 	data.isNarrow = !data.isNarrow;
 };
 
 document.querySelector('a#supernarrow').onclick = function() {
 	data.isNarrow = false;
+	data.isSuperWide = false;
 	document.querySelector('a#narrow').innerHTML = 'Show narrow version';
+	document.querySelector('a#superwide').innerHTML = 'show superwide version';
 	document.querySelector('#panel_6 #example1').classList = data.isSuperNarrow
 		? 'demo_document'
 		: 'demo_document supernarrow';
 	document.querySelector('a#supernarrow').innerHTML = data.isSuperNarrow
 		? 'show supernarrow version'
-		: 'show wide version';
+		: 'show normal version';
 	data.isSuperNarrow = !data.isSuperNarrow;
+};
+
+document.querySelector('a#superwide').onclick = function() {
+	data.isNarrow = false;
+	data.isSuperNarrow = false;
+	document.querySelector('a#narrow').innerHTML = 'Show narrow version';
+	document.querySelector('a#supernarrow').innerHTML = 'show supernarrow version';
+
+	document.querySelector('#panel_6 #example1').classList = data.isSuperWide
+		? 'demo_document'
+		: 'demo_document superwide';
+	document.querySelector('a#superwide').innerHTML = data.isSuperWide
+		? 'show superwide version'
+		: 'show normal version';
+	data.isSuperWide = !data.isSuperWide;
 };

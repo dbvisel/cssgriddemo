@@ -600,8 +600,7 @@ article .demo {
       grid-template-rows: 50px 1fr 150px 150px 150px 50px; }
       #panel_6 .demo_document#example1.supernarrow .image {
         grid-column: 1 / 3;
-        grid-row: unset;
-        transform: rotate(-3deg); }
+        grid-row: unset; }
         #panel_6 .demo_document#example1.supernarrow .image#image2 {
           grid-row: 4/5; }
         #panel_6 .demo_document#example1.supernarrow .image#image3 {
@@ -612,6 +611,26 @@ article .demo {
         height: 25px; }
       #panel_6 .demo_document#example1.supernarrow .footer {
         grid-row: 6/7; }
+    #panel_6 .demo_document#example1.superwide {
+      grid-template-rows: 50px 1fr 25px 50px;
+      grid-template-columns: 1fr 100px 100px 100px; }
+      #panel_6 .demo_document#example1.superwide .header {
+        grid-column: 1/5; }
+      #panel_6 .demo_document#example1.superwide .leftcolumn {
+        grid-column: 1/2;
+        grid-row: 2/4; }
+      #panel_6 .demo_document#example1.superwide .footer {
+        grid-column: 1/2;
+        grid-row: 4/5; }
+      #panel_6 .demo_document#example1.superwide .image {
+        grid-column: unset;
+        grid-row: 2/3; }
+      #panel_6 .demo_document#example1.superwide .imagecaption {
+        grid-column: unset;
+        grid-row: 3/4;
+        writing-mode: unset; }
+        #panel_6 .demo_document#example1.superwide .imagecaption#caption1, #panel_6 .demo_document#example1.superwide .imagecaption#caption2, #panel_6 .demo_document#example1.superwide .imagecaption#caption3 {
+          grid-row: unset; }
     #panel_6 .demo_document#example1 .header {
       grid-column: 1/4; }
     #panel_6 .demo_document#example1 .leftcolumn {
@@ -631,8 +650,7 @@ article .demo {
       background-color: #bdf988;
       border: 4px dotted black;
       padding: 4px;
-      min-height: 100px;
-      transform: rotate(3deg); }
+      min-height: 100px; }
       @media (max-width: 1360px) {
         #panel_6 .demo_document#example1 .image {
           grid-row: 3/4;

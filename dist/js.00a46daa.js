@@ -229,7 +229,8 @@ var data = {
   panels: 0,
   localStorage: false,
   isNarrow: false,
-  isSuperNarrow: false
+  isSuperNarrow: false,
+  isSuperWide: false
 };
 var navigation = {
   setup: function setup() {
@@ -353,18 +354,32 @@ navigation.setup();
 
 document.querySelector('a#narrow').onclick = function () {
   data.isSuperNarrow = false;
+  data.isSuperWide = false;
   document.querySelector('a#supernarrow').innerHTML = 'show supernarrow version';
+  document.querySelector('a#superwide').innerHTML = 'show superwide version';
   document.querySelector('#panel_6 #example1').classList = data.isNarrow ? 'demo_document' : 'demo_document narrow';
-  document.querySelector('a#narrow').innerHTML = data.isNarrow ? 'Show narrow version' : 'Show wide version';
+  document.querySelector('a#narrow').innerHTML = data.isNarrow ? 'Show narrow version' : 'Show normal version';
   data.isNarrow = !data.isNarrow;
 };
 
 document.querySelector('a#supernarrow').onclick = function () {
   data.isNarrow = false;
+  data.isSuperWide = false;
   document.querySelector('a#narrow').innerHTML = 'Show narrow version';
+  document.querySelector('a#superwide').innerHTML = 'show superwide version';
   document.querySelector('#panel_6 #example1').classList = data.isSuperNarrow ? 'demo_document' : 'demo_document supernarrow';
-  document.querySelector('a#supernarrow').innerHTML = data.isSuperNarrow ? 'show supernarrow version' : 'show wide version';
+  document.querySelector('a#supernarrow').innerHTML = data.isSuperNarrow ? 'show supernarrow version' : 'show normal version';
   data.isSuperNarrow = !data.isSuperNarrow;
+};
+
+document.querySelector('a#superwide').onclick = function () {
+  data.isNarrow = false;
+  data.isSuperNarrow = false;
+  document.querySelector('a#narrow').innerHTML = 'Show narrow version';
+  document.querySelector('a#supernarrow').innerHTML = 'show supernarrow version';
+  document.querySelector('#panel_6 #example1').classList = data.isSuperWide ? 'demo_document' : 'demo_document superwide';
+  document.querySelector('a#superwide').innerHTML = data.isSuperWide ? 'show superwide version' : 'show normal version';
+  data.isSuperWide = !data.isSuperWide;
 };
 },{"../scss/styles.scss":"scss/styles.scss"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
@@ -393,7 +408,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62348" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49956" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);

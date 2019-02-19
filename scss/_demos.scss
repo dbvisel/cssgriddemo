@@ -314,7 +314,6 @@ article .demo {
 			& .image {
 				grid-column: 1 / 3;
 				grid-row: unset;
-				transform: rotate(-3deg);
 				&#image2 {
 					grid-row: 4/5;
 				}
@@ -329,6 +328,35 @@ article .demo {
 			}
 			& .footer {
 				grid-row: 6/7;
+			}
+		}
+		&.superwide {
+			grid-template-rows: 50px 1fr 25px 50px;
+			grid-template-columns: 1fr 100px 100px 100px;
+			& .header {
+				grid-column: 1/5;
+			}
+			& .leftcolumn {
+				grid-column: 1/2;
+				grid-row: 2/4;
+			}
+			& .footer {
+				grid-column: 1/2;
+				grid-row: 4/5;
+			}
+			& .image {
+				grid-column: unset;
+				grid-row: 2/3;
+			}
+			& .imagecaption {
+				grid-column: unset;
+				grid-row: 3/4;
+				writing-mode: unset;
+				&#caption1,
+				&#caption2,
+				&#caption3 {
+					grid-row: unset;
+				}
 			}
 		}
 		& .header {
@@ -353,7 +381,6 @@ article .demo {
 			border: 4px dotted black;
 			padding: 4px;
 			min-height: 100px;
-			transform: rotate(3deg);
 			@include media('<=big') {
 				grid-row: 3/4;
 				grid-column: unset;
